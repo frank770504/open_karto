@@ -4174,7 +4174,7 @@ namespace karto
   typedef enum
   {
     GridStates_Unknown = 0,
-    GridStates_Occupied = 100,
+    GridStates_Occupied = 250,
     GridStates_Free = 255
   } GridStates;
 
@@ -5366,7 +5366,7 @@ namespace karto
         for (kt_int32u i = 0; i < pLaserRangeFinder->GetNumberOfRangeReadings(); i++, beamNum++)
         {
           kt_double rangeReading = GetRangeReadings()[i];
-          if (!math::InRange(rangeReading, pLaserRangeFinder->GetMinimumRange(), rangeThreshold))
+          if (!math::InRangeHollow(rangeReading, pLaserRangeFinder->GetMinimumRange(), rangeThreshold))
           {
             kt_double angle = scanPose.GetHeading() + minimumAngle + beamNum * angularResolution;
 
@@ -6411,7 +6411,7 @@ namespace karto
       //////////////////////////////////////////////////////
       // convert points into local coordinates of scan pose
 
-      const PointVectorDouble& rPointReadings = pScan->GetPointReadings();
+      const PointVectorDouble& rPointReadings = pScan->GetPointReadings(true);
 
       // compute transform to scan pose
       Transform transform(pScan->GetSensorPose());

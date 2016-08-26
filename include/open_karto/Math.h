@@ -175,6 +175,19 @@ namespace karto
     }
 
     /**
+     * Checks whether value is in the range (a;b)
+     * not equal to a and b themselves
+     * @param value
+     * @param a
+     * @param b
+     */
+    template<typename T>
+    inline kt_bool InRangeHollow(const T& value, const T& a, const T& b)
+    {
+      return (value > a && value < b);
+    }
+
+    /**
      * Normalizes angle to be in the range of [-pi, pi]
      * @param angle to be normalized
      * @return normalized angle
